@@ -1,7 +1,9 @@
 <div class="page-header">
   <h1>{{model?.user}}'s To Do List
     <span class="label label-default"
-          [class.hide]="TnIncompletas()==0"> {{TnIncompletas()}}</span>
+    [ngClass]="{'label-success': TnIncompletas()<2, 'label-warning': TnIncompletas() >=2}"
+    *ngIf="TnIncompletas()> 0">
+    {{TnIncompletas()}}</span>
   </h1>
 </div>
 
