@@ -21,4 +21,7 @@ model = {
       !item.done ? count++ : true);
       return count;
   }
+  addItem(tarea) {
+    this.model.items.push({action: tarea, done: false})
+  }
 }
