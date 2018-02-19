@@ -14,5 +14,11 @@ model = {
     {action: "Recoger entradas", done: false},
     {action: "Llamar a juan", done: false},
   ]
-}
+};
+  TnIncompletas(){
+    let count = 0;
+    this.model.items.forEach((item, index)=>
+      !item.done ? count++ : true);
+      return count;
+  }
 }
