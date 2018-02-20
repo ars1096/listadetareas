@@ -17,9 +17,9 @@ export class AppComponent {
     ]
   };
 
-  constructor(){
-    this.ordenaTareas();
-  }
+ // constructor(){
+   // this.ordenaTareas();
+  //}
 
   TnIncompletas(){
     let count = 0;
@@ -30,7 +30,7 @@ export class AppComponent {
 
   addItem(tarea){
     this.model.items.push({action: tarea, done: false, prioridad: 5});
-    this.ordenaTareas();
+    //this.ordenaTareas();
   }
 
   nuevaPrioridad(e,i){
@@ -38,13 +38,13 @@ export class AppComponent {
     this.model.items[i].prioridad = e.prioridad;
   }
 
-  ordenaTareas(){
-    this.model.items.sort((a:any, b:any)=>{
-      if (a.action.toLowerCase() < b.action.toLowerCase()){
-        return -1;
-      } else if (a.action.toLowerCase() > b.action.toLowerCase()) {
-        return 1;
-      } else return 0;
-    });
-  }
+ //ordenaTareas(){//
+ //  this.model.items.sort((a:any, b:any)=>{
+ //    if (a.action.toLowerCase() < b.action.toLowerCase()){
+ //      return -1;
+ //    } else if (a.action.toLowerCase() > b.action.toLowerCase()) {
+ //      return 1;
+ //    } else return 0;
+ //  });
+ //}
 }
