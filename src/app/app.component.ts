@@ -7,8 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   fecha = new Date();
+  priority= true;
+  mostrarTodas = true;
   model = {
-    user: "Juan",
+    user: "Pipo",
     items: [
       {action: "Comprar Flores", done: false, prioridad: 4},
       {action: "Buscar Zapatos", done: true, prioridad: 2},
@@ -17,9 +19,9 @@ export class AppComponent {
     ]
   };
 
- // constructor(){
-   // this.ordenaTareas();
-  //}
+  constructor(){
+    // this.ordenaTareas();
+  }
 
   TnIncompletas(){
     let count = 0;
@@ -30,21 +32,30 @@ export class AppComponent {
 
   addItem(tarea){
     this.model.items.push({action: tarea, done: false, prioridad: 5});
-    //this.ordenaTareas();
+    // this.ordenaTareas();
+  }
+
+  removeItem(tarea){
+    this.model.items.splice(tarea,1);
+  }
+
+  findTarea(elemento){
+    return elemento.action == this;
   }
 
   nuevaPrioridad(e,i){
     console.log(e,i);
-    this.model.items[i].prioridad = e.prioridad;
+    let indice = this.model.items.findIndex(this.findTarea, e.tarea)
+    this.model.items[indice].prioridad = e.prioridad;
   }
-
- //ordenaTareas(){//
- //  this.model.items.sort((a:any, b:any)=>{
- //    if (a.action.toLowerCase() < b.action.toLowerCase()){
- //      return -1;
- //    } else if (a.action.toLowerCase() > b.action.toLowerCase()) {
- //      return 1;
- //    } else return 0;
- //  });
- //}
+  //
+  // ordenaTareas(){
+  //   this.model.items.sort((a:any, b:any)=>{
+  //     if (a.action.toLowerCase() < b.action.toLowerCase()){
+  //       return -1;
+  //     } else if (a.action.toLowerCase() > b.action.toLowerCase()) {
+  //       return 1;
+  //     } else return 0;
+  //   });
+  // }
 }

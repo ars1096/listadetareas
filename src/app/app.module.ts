@@ -5,8 +5,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {PrioridadComponent} from './prioridad.component';
-import {OrdenatareasPipe} from "./shared/ordenatareas.pipe";
+import {OrdenatareasPipe} from './shared/ordenatareas.pipe';
 import { FiltroDonePipe } from './filtro-done.pipe';
+import { CallbackhellComponent } from './callbackhell/callbackhell.component';
+import { ReactiveComponent } from './reactive/reactive.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { FiltroDonePipe } from './filtro-done.pipe';
     AppComponent,
     PrioridadComponent,
     OrdenatareasPipe,
-    FiltroDonePipe
+    FiltroDonePipe,
+    CallbackhellComponent,
+    ReactiveComponent
   ],
   imports: [
     BrowserModule,

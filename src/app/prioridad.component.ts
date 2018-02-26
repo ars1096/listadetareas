@@ -1,4 +1,3 @@
-///<reference path="../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
@@ -49,9 +48,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class PrioridadComponent{
   @Input() prioridad = 0;
+  @Input() tarea;
   @Output() nuevaPrioridad = new EventEmitter();
   voto(valor){
     this.prioridad += valor;
-    this.nuevaPrioridad.emit({prioridad: this.prioridad});
+    this.nuevaPrioridad.emit({
+      prioridad: this.prioridad,
+      tarea: this.tarea
+    });
   }
 }

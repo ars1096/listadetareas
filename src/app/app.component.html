@@ -1,44 +1,50 @@
 <div class="page-header">
   <h1>{{model?.user}}'s To Do List
     <span class="label label-default"
-    [ngClass]="{'label-success': TnIncompletas()<2, 'label-warning': TnIncompletas() >=2}"
-    *ngIf="TnIncompletas()> 0">
+          [ngClass]="{'label-success': TnIncompletas()<2, 'label-warning': TnIncompletas() >=2}"
+          *ngIf="TnIncompletas()> 0">
     {{TnIncompletas()}}</span>
 
   </h1>
   {{ fecha | date }}
-</div>
 
-<div class="panel">
-  <div class="input-group"><input type="text" class="form-control" #item>
-    <span class="input-group-btn">
+  <div class="panel">
+    <div class="input-group"><input type="text" class="form-control" #item>
+      <span class="input-group-btn">
       <button class="btn btn-default"
-      (click)="addItem(item.value); item.value=''"
+              (click)="addItem(item.value); item.value=''"
       >Add</button>
       </span></div>
-
+  </div>
   <table class="table table-striped">
     <thead>
     <tr>
       <th>Tarea</th>
       <th>completada</th>
+      <th> </th>
       <th>Prioridad</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of model?.items | ordenaTareas; let i = index"><!--modifica o genera codigo porque empieza por * -->
+
+    <tr *ngFor="let item of model?.items | ordenaTareas | filtroDone: priority ; let i = index">
       <td>{{item.action}}</td>
       <td>{{item.done}}</td>
-      <td><input type="checkbox" [(ngModel)] = "item.done"></td><!-- enlace bidireccional entre el input y elemento de la clase-->
-      <td> <app-prioridad
+      <td><input type="checkbox" [(ngModel)]="item.done"></td>
+      <td><app-prioridad
         [prioridad]="item.prioridad"
-        (nuevaPrioridad)="nuevaPrioridad($event)"
-      ></app-prioridad></td>
-      <td>{{ item | json}}</td>
+        [tarea]="item.action"
+        (nuevaPrioridad)="nuevaPrioridad($event)"></app-prioridad>
+      </td>
+      <td>
+        <button class="btn btn-default" (click)="removeItem(i)">Eliminar</button>
+      </td>
     </tr>
-
-
     </tbody>
   </table>
-
+  <div >
+    <label >Ordenar por prioridad
+    <input type="checkbox"  class="checkbox-inline" [(ngModel)] = "priority" >
+    </label>
+  </div>
 </div>
